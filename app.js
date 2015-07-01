@@ -11,7 +11,7 @@ var config = {
    'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKT8kGk6ZNo3sC4IIo29leRLVD23T2r0\n'+
    'vWXBEkk2pV42HsxKAmPs789AGHH9XwbGpD7FvrcBWWgb65v32Hg/NGkCAwEAAQ==\n'+
    '-----END PUBLIC KEY-----'
-}
+};
 
 var wrap = function(args) {
 
@@ -76,7 +76,7 @@ var wrap = function(args) {
 
 // Authentification check
    app.use('/user', function (req, res, next) {
-      if ( req.signedCookies.session || req.path === '/login' || req.path === '/register' ) {
+      if ( req.signedCookies.session || req.path === '/login' || req.path === '/register' || req.path.indexOf('/verify') > -1) {
          next();
       }
       else {
@@ -86,17 +86,6 @@ var wrap = function(args) {
 
    app.use('/user', routes);
 
-   /*app.use('/user/addSubscription',    addSubscription);
-   app.use('/user/charts',             charts);
-   app.use('/user/data',               data);
-   app.use('/user/apps',               apps);
-   app.use('/user',                    index);
-   app.use('/user/dashboard',          index);
-   app.use('/login',                   login);
-   app.use('/user/login',              login);
-   app.use('/user/logout',             logout);
-   app.use('/user/register',           register);
-   app.use('/user/subscriptions',      subscriptions);*/
 
 
 // catch 404 and forward to error handler

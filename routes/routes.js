@@ -22,6 +22,7 @@ var wrap = function(args){
    var logout           = require('./logout')(args);
    var register         = require('./register')(args);
    var subscriptions    = require('./subscriptions')(args);
+   var verifyUser       = require('./verifyUser');
 
 
    router.use('/',                  index           );
@@ -38,9 +39,10 @@ var wrap = function(args){
    router.use('/logout',            logout          );
    router.use('/register',          register        );
    router.use('/subscriptions',     subscriptions   );
+   router.use('/verify',            verifyUser      );
 
    return router
-}
+};
 
 
 module.exports = wrap;

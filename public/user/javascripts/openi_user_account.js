@@ -6,7 +6,17 @@ $(document).ready(function(){
    if ($("#activetab").val()){
       $("#createTab a").click();
    }
-})
+});
+
+
+//
+//    validate email
+//
+function validateEmail(email) {
+   // [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+}
 
 
 //
@@ -14,11 +24,26 @@ $(document).ready(function(){
 //
 function onClickRegisterButton() {
 
-   var username        = $(" #_openi_username").val();
-   var password        = $(" #_openi_passwd").val();
-   var confirmPassword = $(" #_openi_conf_passwd").val();
+   var username        = $("#_openi_username").val();
+   var password        = $("#_openi_passwd").val();
+   var email           = $("#_openi_email").val();
+   var confirmEmail    = $("#_openi_conf_email").val();
+   var confirmPassword = $("#_openi_conf_passwd").val();
    var validated       = true;
    var error           = null;
+
+   if ( email === "" || confirmEmail === "" ) {
+      error = ("Please provide a email adress and confirm this");
+      validated = false;
+   }
+   else if ( !validateEmail(email) ) {
+      error = ("Please provide an valid email adress");
+      validated = false;
+   }
+   else if ( !validateEmail(confirmEmail) || email !== confirmEmail ) {
+      error = ("Your email and confirm email do not match");
+      validated = false;
+   }
 
    if (username === "") {
 
